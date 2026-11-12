@@ -1,0 +1,85 @@
+# DISM
+Get-Module # -ListAvailable
+Import-Module DISM
+
+Get-Command -Module DISM # | Out-GridView
+Get-Help Mount-WindowsImage -Examples
+Get-Help Dismount-WindowsImage -Examples
+
+# Windows 11 Customizations
+Mount-WindowsImage -ImagePath "E:\SOURCE\W11-25H2-CZ\install.wim" -Index 6 -Path "E:\Destination\W11-25H2-CZ"
+Add-WindowsPackage –Path E:\W11CZ\Destination –PackagePath C:\Users\Administrator\Desktop\LektorFileShare\*.msu
+Dismount-WindowsImage -Path "E:\W11CZ\Destination" -Discard
+
+# Windows PE Customizations
+Mount-WindowsImage –ImagePath E:\Winpe64\Media\Sources\Boot.wim –Index 1 –Path E:\Winpe64\Mount
+# Mount-WindowsImage –ImagePath E:\Winpe64\Media\Sources\Winpe.wim –Index 1 –Path E:\Winpe64\Mount
+CD "C:\Program Files (x86)\Windows Kits\10\Assessment and deployment kit\Windows PreInstallation Environment\amd64\WinPE_OCs"
+
+Add-WindowsPackage –Path E:\winpe64\mount –PackagePath .\WinPE-NetFX.cab
+Add-WindowsPackage –Path E:\winpe64\mount –PackagePath .\WinPE-Scripting.cab
+Add-WindowsPackage –Path E:\winpe64\mount –PackagePath .\WinPE-WMI.cab
+Add-WindowsPackage –Path E:\winpe64\mount –PackagePath .\WinPE-PowerShell.cab
+Add-WindowsPackage –Path E:\winpe64\mount –PackagePath .\WinPE-DismCmdlets.cab
+
+Dismount-WindowsImage –Path E:\winpe64\mount –Save
+
+
+imagex /mount winpe.wim 1 E:\Mount
+dism /image:E:\Mount /get-scratchspace
+
+WSUS
+Install-Module -Name PSWindowsUpdate
+
+DISM
+ImageX /mount winpe.wim 1 E:\Mount
+dism /image:E:\Mount /get-scratchspace
+
+DISM.exe /Image: <path_to_image_directory> [/Get-PESettings | /Get-ScratchSpace | /Get-TargetPath | /Set-ScratchSpace:<size_of_ScratchSpace> | /Set-TargetPath :<target_path> ]
+Import-Module DISM
+
+Mount-WindowsImage -ImagePath E:\WinPe64\Media\Sources\Boot.wim -Index 1 -Path E:\WinPe64\Mount
+
+https://learn.microsoft.com/cs-cz/windows-hardware/manufacture/desktop/dism-windows-pe-servicing-command-line-options?view=windows-11
+
+
+Dism /image:C:\test\offline /Get-ScratchSpace
+Dism /image:C:\test\offline /set-ScratchSpace:128
+
+
+Dism /Mount-Image /ImageFile:C:\WinPE\media\sources\boot.wim /Index:1 /MountDir:C:\Mount
+Dism /Image:C:\Mount /Set-ScratchSpace:512
+Dism /Unmount-Image /MountDir:C:\Mount /Commit
+
+IMAGEX /INFO /?
+imagex /info e:\kurz\W11-22H2-MULTI\install.wim
+
+dism /Get-WimInfo /?
+DISM.exe /Get-WimInfo /WimFile:e:\kurz\W11-22H2-MULTI\install.wim
+
+DISM.exe /Mount-Wim /?
+DISM.exe /Mount-Wim /WimFile:e:\kurz\W11-22H2-MULTI\install.wim /index:6 /MountDir:E:\kurz\W11Export
+
+DISM.exe /Unmount-Image /MountDir:E:\kurz\W11Export /Comit
+
+DISM PowerShell Cmdlets
+
+DISM /get-wiminfo /wimfile:e:\sources\install.wim /index:1 
+DISM /export-image /SourceImageFile:E:\Sources\install.wim /SourceIndex:6 /DestinationImageFile:E:\Sources\W10.wim /compress:max
+DISM /Online /Cleanup-Image /RestoreHealth  
+
+Import-Module "C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\amd64\DISM"
+
+Mount-WindowsImage –ImagePath E:\Winpe64\Media\Sources\Boot.wim –Index 1 –Path E:\Winpe64\Mount
+
+Add-WindowsDriver –Path E:\winpe64\mount –Driver E:\Software\Drivers\HyperVx64 -Recurse -ForceUnsigned
+
+CD "C:\Program Files (x86)\Windows Kits\10\Assessment and deployment kit\Windows PreInstallation Environment\amd64\WinPE_OCs"
+
+Add-WindowsPackage –Path E:\winpe64\mount –PackagePath .\WinPE-NetFX.cab
+Add-WindowsPackage –Path E:\winpe64\mount –PackagePath .\WinPE-Scripting.cab
+Add-WindowsPackage –Path E:\winpe64\mount –PackagePath .\WinPE-WMI.cab
+Add-WindowsPackage –Path E:\winpe64\mount –PackagePath .\WinPE-PowerShell.cab
+Add-WindowsPackage –Path E:\winpe64\mount –PackagePath .\WinPE-DismCmdlets.cab
+
+Dismount-WindowsImage –Path E:\winpe64\mount –Save
