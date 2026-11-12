@@ -1,0 +1,9 @@
+Windows Setup Automation (Setupconfig.ini)
+
+DISM /Mount-Image /ImageFile:“C:\Images\CustomImage.wim“ /Index:1 /MountDir:C:\Mount
+Copy CustomAnswerFile.xml c:\mount\Windows\Panther\unattended.xml
+DISM /Unmount-Image /MountDir:C:\mount /Commit
+
+# SetupConfig.ini
+# PostOOBE.cmd
+# Twitter - jarwidmark
