@@ -1,0 +1,5 @@
+DISM - Deployment Image Servicing and Management
+SFC - SystemFile Control
+C:\Windows\WinSxS
+
+DISM /Online /Cleanup-Image /CheckHealth
