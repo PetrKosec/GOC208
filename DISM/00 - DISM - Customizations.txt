@@ -1,13 +1,19 @@
 # DISM
 Get-Module # -ListAvailable
 Import-Module DISM
+Get-Command -Module DISM | ogv
+Update-Help
+Get-Help
+Help Mount-WindowsImage -Examples
+
+
 
 Get-Command -Module DISM # | Out-GridView
 Get-Help Mount-WindowsImage -Examples
 Get-Help Dismount-WindowsImage -Examples
 
 # Windows 11 Customizations
-Mount-WindowsImage -ImagePath "E:\SOURCE\W11-25H2-CZ\install.wim" -Index 6 -Path "E:\Destination\W11-25H2-CZ"
+Mount-WindowsImage -ImagePath "E:\SOURCE\W11-25H2-CZ\install.wim" -Index 6 -Path "E:\Destination\W11-25H2-CZ" -Optimize
 Add-WindowsPackage –Path E:\W11CZ\Destination –PackagePath C:\Users\Administrator\Desktop\LektorFileShare\*.msu
 Dismount-WindowsImage -Path "E:\W11CZ\Destination" -Discard
 
