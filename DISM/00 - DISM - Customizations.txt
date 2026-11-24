@@ -40,6 +40,8 @@ Install-Module -Name PSWindowsUpdate
 DISM
 ImageX /mount winpe.wim 1 E:\Mount
 dism /image:E:\Mount /get-scratchspace
+dism /image:E:\Mount /set-scratchspace:512
+
 
 DISM.exe /Image: <path_to_image_directory> [/Get-PESettings | /Get-ScratchSpace | /Get-TargetPath | /Set-ScratchSpace:<size_of_ScratchSpace> | /Set-TargetPath :<target_path> ]
 Import-Module DISM
