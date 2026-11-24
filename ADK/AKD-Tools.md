@@ -14,3 +14,6 @@
 ### Microsoft Visual Studio
 
 ### Windows Driver Kit
+### Enterprise WDK (EWDK)
+### Windows symbols
+### Windows Hardware Lab Kit
