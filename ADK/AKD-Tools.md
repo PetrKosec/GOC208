@@ -10,3 +10,7 @@
 - Volume Activation Management Tool (VAMT)
 - User Experience Virtualization (UE-V)
 - Application Virtualization (App-V)
+
+### Microsoft Visual Studio
+
+### Windows Driver Kit
