@@ -13,7 +13,7 @@ Get-Help Mount-WindowsImage -Examples
 Get-Help Dismount-WindowsImage -Examples
 
 # Windows 11 Customizations
-Mount-WindowsImage -ImagePath "E:\SOURCE\W11-25H2-CZ\install.wim" -Index 6 -Path "E:\Destination\W11-25H2-CZ" -Optimize
+Mount-WindowsImage -ImagePath "E:\SOURCES\W11-26H2-CZ\install.wim" -Index 6 -Path "E:\SOURCES\MOUNT\W11-26H2" -Optimize
 Add-WindowsPackage –Path E:\W11CZ\Destination –PackagePath C:\Users\Administrator\Desktop\LektorFileShare\*.msu
 Dismount-WindowsImage -Path "E:\W11CZ\Destination" -Discard
 
