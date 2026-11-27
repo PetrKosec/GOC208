@@ -7,6 +7,9 @@
 	• Deployment Image Servicing and Management (DISM) - CVE-2026-50435, CVE-2026-50409, and CVE-2026-54987
 	• Windows System Image Manager (WSIM) - CVE-2026-25166
 	• Application Compatibility Tools on Arm64
+
+### ADK 10.1.28000.3481 (October 2026)
+	• Windows 11 26H1
 	
 ### ADK 10.1.28000.1 (November 2025)
 	• Windows Configuration Designer (ICD)
